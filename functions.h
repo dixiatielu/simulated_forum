@@ -56,17 +56,14 @@ Status showMenu(Forum *F, int &choice) {
 // 论坛初始化
 Status initForum(Forum *F) {
     std::string forum_name;
-    int post_num_per_page, comment_num_per_page;
+    int post_num_per_page;
     std::cout << "请输入论坛名称：";
     std::cin >> forum_name;
     std::cout << "请输入每页显示的帖子数：";
     std::cin >> post_num_per_page;
-    std::cout << "请输入每页显示的评论数：";
-    std::cin >> comment_num_per_page;
 
     F->name = forum_name;
     F->post_num_per_page = post_num_per_page;
-    F->comment_num_per_page = comment_num_per_page;
     return OK;
 }
 
@@ -141,8 +138,7 @@ Status searchPost(Forum *F) {
 Status forumSetting(Forum *F) {
     std::cout << "\n论坛设置：\n";
     std::cout << "1. 每页帖子显示数量\n";
-    std::cout << "2. 每页评论显示数量\n";
-    std::cout << "3. 查找时是否查找帖子内容\n";
+    std::cout << "2. 查找时是否查找帖子内容\n";
     std::cout << "0. 返回上级菜单\n";
 
     int setting_choice;
@@ -155,10 +151,6 @@ Status forumSetting(Forum *F) {
             std::cin >> F->post_num_per_page;
             break;
         case 2:
-            std::cout << "请输入每页评论显示数量：";
-            std::cin >> F->comment_num_per_page;
-            break;
-        case 3:
             std::cout << "是否查找帖子内容？(1:是, 0:否)：";
             std::cin >> F->search_post_content;
             break;

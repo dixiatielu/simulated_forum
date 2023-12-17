@@ -126,7 +126,7 @@ struct Forum
 {
 
     // 论坛设置
-    int post_num_per_page, comment_num_per_page; // 分别代表每页显示的帖子数、评论数和显示的评论深度层级
+    int post_num_per_page; // 分别代表每页显示的帖子数、评论数和显示的评论深度层级
     bool search_post_content; // 查找时是否查找帖子内容
 
     std::vector<Post> posts;
@@ -134,7 +134,6 @@ struct Forum
     Forum(const std::string& forum_name, const int Post_num_per_page, const int Comment_num_per_page, bool Search_post_content)
     {
         post_num_per_page = Post_num_per_page;
-        comment_num_per_page = Comment_num_per_page;
         search_post_content = Search_post_content;
         name = forum_name;
     }
