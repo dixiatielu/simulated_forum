@@ -46,6 +46,7 @@ Status showFourthMenu(Comment *C, Forum *F);
 // 函数定义
 
 Status showMenu(Forum *F, int &choice) {
+    system("cls");
     std::cout << F->name + "操作主菜单：\n";
     std::cout << "1.初始化论坛 2.创建帖子 3.查看帖子 4.查找帖子 5.删除帖子 6.论坛设置 0.退出论坛\n";
     std::cout << "\n请输入选择的操作编号：";
@@ -136,6 +137,8 @@ Status searchPost(Forum *F) {
 }
 
 Status forumSetting(Forum *F) {
+    system("cls");
+
     std::cout << "\n论坛设置：\n";
     std::cout << "1. 每页帖子显示数量\n";
     std::cout << "2. 查找时是否查找帖子内容\n";
@@ -165,6 +168,8 @@ Status forumSetting(Forum *F) {
 }
 
 Status showSecondMenu(Forum *F) {
+    system("cls");
+
     int second_choice;
     int now_page = 1;
     while (true) {
@@ -188,7 +193,7 @@ Status showSecondMenu(Forum *F) {
                 int total_page;
                 total_page = F->posts.size() / F->post_num_per_page + (F->posts.size() % F->post_num_per_page ? 1 : 0);
 
-                std::cout << "请输入操作编号";
+                std::cout << "请输入操作编号\n";
                 std::cout << "1. 上一页\n";
                 std::cout << "2. 下一页\n";
                 std::cout << "3. 跳转至指定页\n";
@@ -273,6 +278,8 @@ Status showSecondMenu(Forum *F) {
 }
 
 Status showThirdMenu(Post *P, Forum *F) {
+    system("cls");
+
     int third_choice;
     while (true) {
         P->displayPost();
@@ -357,6 +364,7 @@ Status showThirdMenu(Post *P, Forum *F) {
 Status showFourthMenu(Comment *C, Forum *F) {
     int fourth_choice;
     while (true) {
+        system("cls");
         C->showDetailedComment();
         std::cout << "\n评论操作菜单：\n";
         std::cout << "1. 返回上一级菜单\n";
@@ -392,14 +400,6 @@ Status showFourthMenu(Comment *C, Forum *F) {
                         if (reply.id == reply_id) {
                             found = true;
                             showFourthMenu(&reply, F);
-//                            reply.showDetailedComment();
-//                            // 实现根据回复id评论回复的功能
-//                            Comment reply_to_reply("", now_comment_id++);
-//                            std::cout << "请输入回复内容：";
-//                            std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
-//                            std::getline(std::cin, reply_to_reply.content);
-//                            reply.replyComment(reply_to_reply);
-//                            std::cout << "回复成功！\n";
                             break;
                         }
                     }
