@@ -1,12 +1,12 @@
 // structs.h
 
-#ifndef ç»¼åˆè®¾è®¡_STRUCTS_H
-#define ç»¼åˆè®¾è®¡_STRUCTS_H
+#ifndef ZHSJ_STRUCTS_H
+#define ZHSJ_STRUCTS_H
 
 #include <vector>
 #include <iomanip>
 
-// è¯„è®ºå’Œå›å¤
+// ÆÀÂÛºÍ»Ø¸´
 struct Comment
 {
     Comment(const std::string &comment_content, int now_id){
@@ -15,43 +15,43 @@ struct Comment
         id = now_id;
     }
 
-    //ä¸€ä¸ªè¯„è®ºç”±å†…å®¹ã€å›å¤å’Œæ—¶é—´ç»„æˆ
-    std::string content; // è¯„è®ºå†…å®¹
-    std::vector<Comment> replies;    //è¯„è®ºçš„è¯„è®º ä½¿ç”¨å˜é•¿æ•°ç»„vectorå¯ä»¥å…äºåˆ†é…è¿‡å¤šçš„å†…å­˜ç©ºé—´ï¼Œåœ¨éœ€è¦æ—¶å†ä½¿ç”¨ã€‚
-    time_t tme; // è¯„è®ºæ—¶é—´
-    int id; // è¯„è®ºå”¯ä¸€id
+    //Ò»¸öÆÀÂÛÓÉÄÚÈİ¡¢»Ø¸´ºÍÊ±¼ä×é³É
+    std::string content; // ÆÀÂÛÄÚÈİ
+    std::vector<Comment> replies;    //ÆÀÂÛµÄÆÀÂÛ Ê¹ÓÃ±ä³¤Êı×évector¿ÉÒÔÃâÓÚ·ÖÅä¹ı¶àµÄÄÚ´æ¿Õ¼ä£¬ÔÚĞèÒªÊ±ÔÙÊ¹ÓÃ¡£
+    time_t tme; // ÆÀÂÛÊ±¼ä
+    int id; // ÆÀÂÛÎ¨Ò»id
 
-    // å›å¤è¯„è®º
+    // »Ø¸´ÆÀÂÛ
     Status replyComment(const Comment& c){
         replies.push_back(c);
         return OK;
     }
-    // åˆ é™¤å›å¤
+    // É¾³ı»Ø¸´
     Status deleteReply(const int &reply_id) {
         for (auto it = replies.begin(); it != replies.end(); ++it) {
             if (it->id == reply_id) {
                 replies.erase(it);
-                return OK; // å›å¤åˆ é™¤æˆåŠŸ
+                return OK; // »Ø¸´É¾³ı³É¹¦
             }
         }
 
-        // é€’å½’åˆ é™¤å›å¤çš„å›å¤
+        // µİ¹éÉ¾³ı»Ø¸´µÄ»Ø¸´
         for (auto &reply : replies) {
             if (reply.deleteReply(reply_id) == OK)
-                return OK; // å›å¤åˆ é™¤æˆåŠŸ
+                return OK; // »Ø¸´É¾³ı³É¹¦
         }
 
-        return ERROR; // æœªæ‰¾åˆ°æŒ‡å®šidçš„å›å¤åŠå…¶å›å¤
+        return ERROR; // Î´ÕÒµ½Ö¸¶¨idµÄ»Ø¸´¼°Æä»Ø¸´
     }
-    // æ˜¾ç¤ºè¯„è®ºè¯¦æƒ…
+    // ÏÔÊ¾ÆÀÂÛÏêÇé
     Status showDetailedComment(int depth = 0) {
-        // æ˜¾ç¤ºè¯„è®ºçš„ç¼©è¿›ï¼Œæ ¹æ®æ·±åº¦å±‚æ¬¡ç¡®å®šç¼©è¿›é‡
+        // ÏÔÊ¾ÆÀÂÛµÄËõ½ø£¬¸ù¾İÉî¶È²ã´ÎÈ·¶¨Ëõ½øÁ¿
         std::cout << std::setw(4 * depth) << "";
         char time_str[100];
-        strftime(time_str, 100, "%Yå¹´%mæœˆ%dæ—¥ %X", localtime(&tme));
-        std::cout << (depth == 0 ? "å½“å‰è¯„è®º" : "å›å¤") << "IDï¼š" << id << " | å†…å®¹ï¼š" << content << " | è¯„è®ºæ—¶é—´ï¼š" << time_str << std::endl;
+        strftime(time_str, 100, "%YÄê%mÔÂ%dÈÕ %X", localtime(&tme));
+        std::cout << (depth == 0 ? "µ±Ç°ÆÀÂÛ" : "»Ø¸´") << "ID£º" << id << " | ÄÚÈİ£º" << content << " | ÆÀÂÛÊ±¼ä£º" << time_str << std::endl;
 
-        // é€’å½’æ˜¾ç¤ºå›å¤
+        // µİ¹éÏÔÊ¾»Ø¸´
         for (auto &reply : replies) {
             reply.showDetailedComment(depth + 1);
         }
@@ -60,33 +60,33 @@ struct Comment
     }
 };
 
-// å¸–å­
+// Ìû×Ó
 struct Post
 {
-    int id; // å¸–å­id
-    std::string title; // å¸–å­æ ‡é¢˜
+    int id; // Ìû×Óid
+    std::string title; // Ìû×Ó±êÌâ
     std::string content;
     time_t tme;
-    std::vector<Comment> comments;// å¤šä¸ªè¯„è®º
-    // æ„é€ å‡½æ•°ï¼Œåˆ©ç”¨æ­¤å‡½æ•°ç”Ÿæˆä¸€ç¯‡Post
-    // ç”¨æ³•ç¤ºä¾‹ï¼šPost myPost("Title of Post", "Content of Post", now_post_id);
+    std::vector<Comment> comments;// ¶à¸öÆÀÂÛ
+    // ¹¹Ôìº¯Êı£¬ÀûÓÃ´Ëº¯ÊıÉú³ÉÒ»ÆªPost
+    // ÓÃ·¨Ê¾Àı£ºPost myPost("Title of Post", "Content of Post", now_post_id);
     Post(const std::string& postTitle, const std::string& postContent, int now_id)
     {
-        // åœ¨æ„é€ å‡½æ•°ä¸­å¯¹ç»“æ„ä½“æˆå‘˜è¿›è¡Œåˆå§‹åŒ–
+        // ÔÚ¹¹Ôìº¯ÊıÖĞ¶Ô½á¹¹Ìå³ÉÔ±½øĞĞ³õÊ¼»¯
         title = postTitle;
         content = postContent;
-        tme = time(nullptr); // ä½¿ç”¨å½“å‰æ—¶é—´åˆå§‹åŒ–timeæˆå‘˜
+        tme = time(nullptr); // Ê¹ÓÃµ±Ç°Ê±¼ä³õÊ¼»¯time³ÉÔ±
         id = now_id;
     }
 
-    // æ˜¾ç¤ºå¸–å­ä¿¡æ¯
+    // ÏÔÊ¾Ìû×ÓĞÅÏ¢
     Status displayPost() const {
         char time_str[100];
-        strftime(time_str, sizeof(time_str), "%Yå¹´%mæœˆ%dæ—¥ %X", localtime(&tme));
-        std::cout << "å¸–å­idï¼š" << id << std::endl;
-        std::cout << "å¸–å­æ ‡é¢˜: " << title << std::endl;
-        std::cout << "å¸–å­å†…å®¹: " << content << std::endl;
-        std::cout << "å¸–å­å‘å¸ƒæ—¶é—´: " << time_str << std::endl;
+        strftime(time_str, sizeof(time_str), "%YÄê%mÔÂ%dÈÕ %X", localtime(&tme));
+        std::cout << "Ìû×Óid£º" << id << std::endl;
+        std::cout << "Ìû×Ó±êÌâ: " << title << std::endl;
+        std::cout << "Ìû×ÓÄÚÈİ: " << content << std::endl;
+        std::cout << "Ìû×Ó·¢²¼Ê±¼ä: " << time_str << std::endl;
 
         if (!comments.empty()) {
             for (Comment comment : comments) {
@@ -97,7 +97,7 @@ struct Post
         return OK;
     }
 
-    // è¯„è®ºå¸–å­
+    // ÆÀÂÛÌû×Ó
     Status commentPost(Comment& c) {
         comments.push_back(c);
         return OK;
@@ -107,27 +107,27 @@ struct Post
         for (auto it = comments.begin(); it != comments.end(); ++it) {
             if (it->id == comment_id) {
                 comments.erase(it);
-                return OK; // è¯„è®ºåˆ é™¤æˆåŠŸ
+                return OK; // ÆÀÂÛÉ¾³ı³É¹¦
             }
         }
 
-        // é€’å½’åˆ é™¤å›å¤
+        // µİ¹éÉ¾³ı»Ø¸´
         for (auto &comment : comments) {
             if (comment.deleteReply(comment_id) == OK)
-                return OK; // å›å¤åˆ é™¤æˆåŠŸ
+                return OK; // »Ø¸´É¾³ı³É¹¦
         }
 
-        return ERROR; // æœªæ‰¾åˆ°æŒ‡å®šidçš„è¯„è®ºåŠå…¶å›å¤
+        return ERROR; // Î´ÕÒµ½Ö¸¶¨idµÄÆÀÂÛ¼°Æä»Ø¸´
     }
 };
 
-// è®ºå›
+// ÂÛÌ³
 struct Forum
 {
 
-    // è®ºå›è®¾ç½®
-    int post_num_per_page; // åˆ†åˆ«ä»£è¡¨æ¯é¡µæ˜¾ç¤ºçš„å¸–å­æ•°ã€è¯„è®ºæ•°å’Œæ˜¾ç¤ºçš„è¯„è®ºæ·±åº¦å±‚çº§
-    bool search_post_content; // æŸ¥æ‰¾æ—¶æ˜¯å¦æŸ¥æ‰¾å¸–å­å†…å®¹
+    // ÂÛÌ³ÉèÖÃ
+    int post_num_per_page; // ·Ö±ğ´ú±íÃ¿Ò³ÏÔÊ¾µÄÌû×ÓÊı¡¢ÆÀÂÛÊıºÍÏÔÊ¾µÄÆÀÂÛÉî¶È²ã¼¶
+    bool search_post_content; // ²éÕÒÊ±ÊÇ·ñ²éÕÒÌû×ÓÄÚÈİ
 
     std::vector<Post> posts;
     std::string name;
@@ -141,10 +141,10 @@ struct Forum
         for (auto it = posts.begin(); it != posts.end(); ++it) {
             if (it->id == post_id) {
                 posts.erase(it);
-                return OK; // å¸–å­åˆ é™¤æˆåŠŸ
+                return OK; // Ìû×ÓÉ¾³ı³É¹¦
             }
         }
-        return ERROR; // æœªæ‰¾åˆ°æŒ‡å®šidçš„å¸–å­
+        return ERROR; // Î´ÕÒµ½Ö¸¶¨idµÄÌû×Ó
     }
     Status createPost(Post& p){
         posts.push_back(p);
@@ -152,4 +152,4 @@ struct Forum
     }
 };
 
-#endif //ç»¼åˆè®¾è®¡_STRUCTS_H
+#endif //×ÛºÏÉè¼Æ_STRUCTS_H

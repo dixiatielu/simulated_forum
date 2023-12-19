@@ -1,97 +1,97 @@
-ï»¿// main.cpp
+// main.cpp
 
 #include<iostream>
 #include<string>
 
-#include "functions.h"  // åŒ…å«å¤´æ–‡ä»¶
+#include "functions.h"  // °üº¬Í·ÎÄ¼ş
 
 using namespace std;
 
 int main() {
-    Forum* F = new Forum("æ¨¡æ‹Ÿè®ºå›", 5, 5, false); // åˆ›å»ºè®ºå›æŒ‡é’ˆ
-    int forum_inited = 0;  // åˆå§‹åŒ–æ ‡å¿—
-    int choice = -1;  // ç”¨æˆ·é€‰æ‹©æ“ä½œçš„å˜é‡
+    Forum* F = new Forum("Ä£ÄâÂÛÌ³", 5, 5, false); // ´´½¨ÂÛÌ³Ö¸Õë
+    int forum_inited = 0;  // ³õÊ¼»¯±êÖ¾
+    int choice = -1;  // ÓÃ»§Ñ¡Ôñ²Ù×÷µÄ±äÁ¿
     now_post_id = 1;
     now_comment_id = 1;
     while (choice != 0) {
-        showMenu(F, choice);  // æ˜¾ç¤ºèœå•
+        showMenu(F, choice);  // ÏÔÊ¾²Ëµ¥
 
-        // å¤„ç†è¾“å…¥éæ•°å­—çš„æƒ…å†µ
+        // ´¦ÀíÊäÈë·ÇÊı×ÖµÄÇé¿ö
         if (!cin) {
-            cout << "\nè¾“å…¥æ“ä½œé€‰æ‹©ç¼–å·éæ•°å­—ï¼è¯·é‡æ–°è¾“å…¥\n";
+            cout << "\nÊäÈë²Ù×÷Ñ¡Ôñ±àºÅ·ÇÊı×Ö£¡ÇëÖØĞÂÊäÈë\n";
             cin.clear();
-            while (cin.get() != '\n');  // æ¸…ç©ºè¾“å…¥ç¼“å†²åŒº
+            while (cin.get() != '\n');  // Çå¿ÕÊäÈë»º³åÇø
             choice = -1;
             continue;
         }
 
         switch (choice) {
             case 0:
-                cout << "è®ºå›å·²ç»“æŸè¿è¡Œ" << endl;
+                cout << "ÂÛÌ³ÒÑ½áÊøÔËĞĞ" << endl;
                 return 0;
 
             case 1:
-                // åˆå§‹åŒ–è®ºå›
+                // ³õÊ¼»¯ÂÛÌ³
                 if(forum_inited)
                 {
-                    cout << "è®ºå›å·²ç»åˆå§‹åŒ–è¿‡äº†å“¦~" << endl;
+                    cout << "ÂÛÌ³ÒÑ¾­³õÊ¼»¯¹ıÁËÅ¶~" << endl;
                     break;
                 }
                 if (initForum(F)) {
-                    cout << "\nåˆå§‹åŒ–æˆåŠŸï¼\n";
+                    cout << "\n³õÊ¼»¯³É¹¦£¡\n";
                     forum_inited = 1;
                 } else {
-                    cout << "\nåˆå§‹åŒ–å¤±è´¥\n";
+                    cout << "\n³õÊ¼»¯Ê§°Ü\n";
                 }
                 break;
 
             case 2:
-                // å‘å¸–
+                // ·¢Ìû
                 if (!forum_inited) {
-                    cout << "\nè®ºå›å°šæœªåˆå§‹åŒ–TATï¼Œè¯·å…ˆåˆå§‹åŒ–\n";
+                    cout << "\nÂÛÌ³ÉĞÎ´³õÊ¼»¯TAT£¬ÇëÏÈ³õÊ¼»¯\n";
                 } else {
-                    // åˆ›å»ºå¸–å­
+                    // ´´½¨Ìû×Ó
                     if(createPost(F) == OK)
-                        cout << "å‘å¸–æˆåŠŸï¼" << endl;
+                        cout << "·¢Ìû³É¹¦£¡" << endl;
                     else
-                        cout << "å‘å¸–å¤±è´¥ï¼" << endl;
+                        cout << "·¢ÌûÊ§°Ü£¡" << endl;
                 }
                 break;
 
             case 3:
-                // æŸ¥çœ‹å¸–å­
+                // ²é¿´Ìû×Ó
                 if (!forum_inited) {
-                    cout << "\nè®ºå›å°šæœªåˆå§‹åŒ–TATï¼Œè¯·å…ˆåˆå§‹åŒ–\n";
+                    cout << "\nÂÛÌ³ÉĞÎ´³õÊ¼»¯TAT£¬ÇëÏÈ³õÊ¼»¯\n";
                 } else {
                     if(showSecondMenu(F) == OK)break;
                 }
                 break;
             case 4:
-                // æŸ¥æ‰¾å¸–å­
+                // ²éÕÒÌû×Ó
                 if (!forum_inited) {
-                    cout << "\nè®ºå›å°šæœªåˆå§‹åŒ–TATï¼Œè¯·å…ˆåˆå§‹åŒ–\n";
+                    cout << "\nÂÛÌ³ÉĞÎ´³õÊ¼»¯TAT£¬ÇëÏÈ³õÊ¼»¯\n";
                 } else {
                     if(searchPost(F) == OK)break;
                 }
                 break;
             case 5:
-                // é€šè¿‡å¸–å­idåˆ é™¤å¸–å­
+                // Í¨¹ıÌû×ÓidÉ¾³ıÌû×Ó
                 if (!forum_inited) {
-                    cout << "\nè®ºå›å°šæœªåˆå§‹åŒ–TATï¼Œè¯·å…ˆåˆå§‹åŒ–\n";
+                    cout << "\nÂÛÌ³ÉĞÎ´³õÊ¼»¯TAT£¬ÇëÏÈ³õÊ¼»¯\n";
                 } else {
                     if(deletePost(F) == OK)break;
                 }
                 break;
             case 6:
-                // è®ºå›è®¾ç½®
+                // ÂÛÌ³ÉèÖÃ
                 if (!forum_inited) {
-                    cout << "\nè®ºå›å°šæœªåˆå§‹åŒ–TATï¼Œè¯·å…ˆåˆå§‹åŒ–\n";
+                    cout << "\nÂÛÌ³ÉĞÎ´³õÊ¼»¯TAT£¬ÇëÏÈ³õÊ¼»¯\n";
                 } else {
                     if(forumSetting(F) == OK)break;
                 }
                 break;
             default:
-                cout << "è¾“å…¥çš„é€‰æ‹©æ— æ•ˆï¼Œè¯·é‡æ–°è¾“å…¥ï¼" << endl;
+                cout << "ÊäÈëµÄÑ¡ÔñÎŞĞ§£¬ÇëÖØĞÂÊäÈë£¡" << endl;
                 break;
         }
     }

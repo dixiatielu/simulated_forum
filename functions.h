@@ -1,7 +1,7 @@
 // functions.h
 
-#ifndef ç»¼åˆè®¾è®¡_FUNCTIONS_H
-#define ç»¼åˆè®¾è®¡_FUNCTIONS_H
+#ifndef ZHSJ_FUNCTIONS_H
+#define ZHSJ_FUNCTIONS_H
 
 #include "global_definitions.h"
 #include "structs.h"
@@ -13,54 +13,54 @@
 int now_post_id = 1;
 int now_comment_id = 1;
 
-// å‡½æ•°å£°æ˜
+// º¯ÊıÉùÃ÷
 
-// åˆå§‹åŒ–è®ºå›
+// ³õÊ¼»¯ÂÛÌ³
 Status initForum(Forum *F);
 
-// å‘å¸–
+// ·¢Ìû
 Status createPost(Forum *F);
 
-// è¾“å‡ºè®ºå›ä¸­å«æœ‰çš„å¸–å­åˆ—è¡¨ï¼Œéœ€è¦åŒ…å«å¸–å­idã€å¸–å­æ ‡é¢˜ã€å‘å¸–æ—¶é—´
+// Êä³öÂÛÌ³ÖĞº¬ÓĞµÄÌû×ÓÁĞ±í£¬ĞèÒª°üº¬Ìû×Óid¡¢Ìû×Ó±êÌâ¡¢·¢ÌûÊ±¼ä
 Status showPosts(Forum *F, int now_page);
 
-// æ ¹æ®å¸–å­idåˆ é™¤å¸–å­
+// ¸ù¾İÌû×ÓidÉ¾³ıÌû×Ó
 Status deletePost(Forum *F);
 
-//æŸ¥æ‰¾å¸–å­ï¼šè¾“å…¥å…³é”®è¯ï¼Œæ£€ç´¢æ‰€æœ‰å«æœ‰å…³é”®è¯çš„å¸–å­
+//²éÕÒÌû×Ó£ºÊäÈë¹Ø¼ü´Ê£¬¼ìË÷ËùÓĞº¬ÓĞ¹Ø¼ü´ÊµÄÌû×Ó
 Status searchPost(Forum *F);
 
-//è®ºå›è®¾ç½®ï¼ŒåŒ…æ‹¬æ¯é¡µå¸–å­æ˜¾ç¤ºæ•°é‡ï¼Œæ¯é¡µè¯„è®ºæ˜¾ç¤ºæ•°é‡ï¼ŒæŸ¥æ‰¾æ—¶æŸ¥æ‰¾å¸–å­å†…å®¹æˆ–ä»…æŸ¥æ‰¾æ ‡é¢˜ç­‰ç­‰è®¾ç½®é¡¹
+//ÂÛÌ³ÉèÖÃ£¬°üÀ¨Ã¿Ò³Ìû×ÓÏÔÊ¾ÊıÁ¿£¬Ã¿Ò³ÆÀÂÛÏÔÊ¾ÊıÁ¿£¬²éÕÒÊ±²éÕÒÌû×ÓÄÚÈİ»ò½ö²éÕÒ±êÌâµÈµÈÉèÖÃÏî
 Status forumSetting(Forum *F);
 
-// ä¸»èœå•
+// Ö÷²Ëµ¥
 Status showMenu(Forum *F, int &choice);
 
-//äºŒçº§èœå•ï¼ˆåœ¨æ˜¾ç¤ºå¸–å­åˆ—è¡¨åè°ƒç”¨ï¼Œéœ€è¦å®ç°è¿”å›ä¸Šçº§èœå•ã€ç¿»é¡µã€æ ¹æ®æ˜¾ç¤ºå¸–å­å†…å®¹ã€æŒ‰å‘å¸–æ—¶é—´å‡/é™åºæ’åˆ—ã€æŒ‰å¸–å­æ ‡é¢˜å­—å…¸åºå‡/é™åºæ’åˆ—è¿™å‡ ä¸ªåŠŸèƒ½ï¼‰
+//¶ş¼¶²Ëµ¥£¨ÔÚÏÔÊ¾Ìû×ÓÁĞ±íºóµ÷ÓÃ£¬ĞèÒªÊµÏÖ·µ»ØÉÏ¼¶²Ëµ¥¡¢·­Ò³¡¢¸ù¾İÏÔÊ¾Ìû×ÓÄÚÈİ¡¢°´·¢ÌûÊ±¼äÉı/½µĞòÅÅÁĞ¡¢°´Ìû×Ó±êÌâ×ÖµäĞòÉı/½µĞòÅÅÁĞÕâ¼¸¸ö¹¦ÄÜ£©
 Status showSecondMenu(Forum *F);
-//ä¸‰çº§èœå•ï¼ˆåœ¨æ˜¾ç¤ºæŸä¸€ä¸ªå¸–å­åæ˜¾ç¤ºï¼Œéœ€è¦å®ç°è¿”å›ä¸Šä¸€çº§èœå•ã€è¯„è®ºå¸–å­ã€è¯„è®ºå¸–å­çš„æŸä¸€ä¸ªè¯„è®ºã€æŒ‰è¯„è®ºæ—¶é—´å‡/é™åºæ˜¾ç¤ºè¯„è®ºã€æ ¹æ®è¯„è®ºidæŸ¥çœ‹æŸä¸€ä¸ªè¯„è®ºä¹‹ä¸‹çš„æ‰€æœ‰è¯„è®ºè¿™äº›åŠŸèƒ½ï¼‰
+//Èı¼¶²Ëµ¥£¨ÔÚÏÔÊ¾Ä³Ò»¸öÌû×ÓºóÏÔÊ¾£¬ĞèÒªÊµÏÖ·µ»ØÉÏÒ»¼¶²Ëµ¥¡¢ÆÀÂÛÌû×Ó¡¢ÆÀÂÛÌû×ÓµÄÄ³Ò»¸öÆÀÂÛ¡¢°´ÆÀÂÛÊ±¼äÉı/½µĞòÏÔÊ¾ÆÀÂÛ¡¢¸ù¾İÆÀÂÛid²é¿´Ä³Ò»¸öÆÀÂÛÖ®ÏÂµÄËùÓĞÆÀÂÛÕâĞ©¹¦ÄÜ£©
 Status showThirdMenu(Post *P, Forum *F);
-//å››çº§èœå•ï¼ˆåœ¨é€‰æ‹©æŸ¥çœ‹æŸä¸€ä¸ªè¯„è®ºåæ˜¾ç¤ºï¼Œéœ€è¦å®ç°è¿”å›ä¸Šä¸€çº§èœå•ï¼Œè¯„è®ºå½“å‰è¯„è®ºï¼Œæ ¹æ®å›å¤idè¯„è®ºå›å¤è¿™äº›åŠŸèƒ½ï¼‰
+//ËÄ¼¶²Ëµ¥£¨ÔÚÑ¡Ôñ²é¿´Ä³Ò»¸öÆÀÂÛºóÏÔÊ¾£¬ĞèÒªÊµÏÖ·µ»ØÉÏÒ»¼¶²Ëµ¥£¬ÆÀÂÛµ±Ç°ÆÀÂÛ£¬¸ù¾İ»Ø¸´idÆÀÂÛ»Ø¸´ÕâĞ©¹¦ÄÜ£©
 Status showFourthMenu(Comment *C, Forum *F);
 
-// å‡½æ•°å®šä¹‰
+// º¯Êı¶¨Òå
 
 Status showMenu(Forum *F, int &choice) {
     system("cls");
-    std::cout << F->name + "æ“ä½œä¸»èœå•ï¼š\n";
-    std::cout << "1.åˆå§‹åŒ–è®ºå› 2.åˆ›å»ºå¸–å­ 3.æŸ¥çœ‹å¸–å­ 4.æŸ¥æ‰¾å¸–å­ 5.åˆ é™¤å¸–å­ 6.è®ºå›è®¾ç½® 0.é€€å‡ºè®ºå›\n";
-    std::cout << "\nè¯·è¾“å…¥é€‰æ‹©çš„æ“ä½œç¼–å·ï¼š";
+    std::cout << F->name + "²Ù×÷Ö÷²Ëµ¥£º\n";
+    std::cout << "1.³õÊ¼»¯ÂÛÌ³ 2.´´½¨Ìû×Ó 3.²é¿´Ìû×Ó 4.²éÕÒÌû×Ó 5.É¾³ıÌû×Ó 6.ÂÛÌ³ÉèÖÃ 0.ÍË³öÂÛÌ³\n";
+    std::cout << "\nÇëÊäÈëÑ¡ÔñµÄ²Ù×÷±àºÅ£º";
     std::cin >> choice;
     return OK;
 }
 
-// è®ºå›åˆå§‹åŒ–
+// ÂÛÌ³³õÊ¼»¯
 Status initForum(Forum *F) {
     std::string forum_name;
     int post_num_per_page;
-    std::cout << "è¯·è¾“å…¥è®ºå›åç§°ï¼š";
+    std::cout << "ÇëÊäÈëÂÛÌ³Ãû³Æ£º";
     std::cin >> forum_name;
-    std::cout << "è¯·è¾“å…¥æ¯é¡µæ˜¾ç¤ºçš„å¸–å­æ•°ï¼š";
+    std::cout << "ÇëÊäÈëÃ¿Ò³ÏÔÊ¾µÄÌû×ÓÊı£º";
     std::cin >> post_num_per_page;
 
     F->name = forum_name;
@@ -71,38 +71,38 @@ Status initForum(Forum *F) {
 
 Status createPost(Forum *F) {
     std::string title, content;
-    std::cout << "è¯·è¾“å…¥å¸–å­æ ‡é¢˜ï¼š";
+    std::cout << "ÇëÊäÈëÌû×Ó±êÌâ£º";
     std::cin >> title;
-    std::cout << "\nè¯·è¾“å…¥å¸–å­å†…å®¹\n";
+    std::cout << "\nÇëÊäÈëÌû×ÓÄÚÈİ\n";
     std::cin >> content;
     Post p(title, content, now_post_id);
-    now_post_id++; // å¸–å­idè‡ªåŠ¨+1
+    now_post_id++; // Ìû×Óid×Ô¶¯+1
     F->createPost(p);
     return OK;
 }
 
-// æŸ¥çœ‹ç¬¬now_pageé¡µçš„å¸–å­
+// ²é¿´µÚnow_pageÒ³µÄÌû×Ó
 Status showPosts(Forum *F, int now_page) {
     int total_page = F->posts.size() / F->post_num_per_page + (F->posts.size() % F->post_num_per_page ? 1 : 0);
-    std::cout << "\nå¸–å­åˆ—è¡¨ï¼š\n";
+    std::cout << "\nÌû×ÓÁĞ±í£º\n";
     for (int i = (now_page - 1) * F->post_num_per_page;i < std::min(now_page * F->post_num_per_page, int(F->posts.size()));i++) {
         Post post = F->posts[i];
         char time_str[100];
-        strftime(time_str, sizeof(time_str), "%Yå¹´%mæœˆ%dæ—¥ %X", localtime(&post.tme));
-        std::cout << "å¸–å­IDï¼š" << post.id << " | æ ‡é¢˜ï¼š" << post.title << " | å‘å¸–æ—¶é—´ï¼š" << time_str << std::endl;
+        strftime(time_str, sizeof(time_str), "%YÄê%mÔÂ%dÈÕ %X", localtime(&post.tme));
+        std::cout << "Ìû×ÓID£º" << post.id << " | ±êÌâ£º" << post.title << " | ·¢ÌûÊ±¼ä£º" << time_str << std::endl;
     }
-    std::cout << "ç¬¬" << now_page << "é¡µ / " << "å…±" << total_page << "é¡µ" << std::endl;
+    std::cout << "µÚ" << now_page << "Ò³ / " << "¹²" << total_page << "Ò³" << std::endl;
     return OK;
 }
 
 Status deletePost(Forum *F) {
     int post_id;
-    std::cout << "\nè¯·è¾“å…¥è¦åˆ é™¤çš„å¸–å­IDï¼š";
+    std::cout << "\nÇëÊäÈëÒªÉ¾³ıµÄÌû×ÓID£º";
     std::cin >> post_id;
     if (F->deletePost(post_id)) {
-        std::cout << "å¸–å­åˆ é™¤æˆåŠŸï¼\n";
+        std::cout << "Ìû×ÓÉ¾³ı³É¹¦£¡\n";
     } else {
-        std::cout << "æœªæ‰¾åˆ°æŒ‡å®šIDçš„å¸–å­ï¼Œåˆ é™¤å¤±è´¥ã€‚\n";
+        std::cout << "Î´ÕÒµ½Ö¸¶¨IDµÄÌû×Ó£¬É¾³ıÊ§°Ü¡£\n";
     }
 
     return OK;
@@ -110,24 +110,24 @@ Status deletePost(Forum *F) {
 
 Status searchPost(Forum *F) {
     std::string keyword;
-    std::cout << "\nè¯·è¾“å…¥å…³é”®è¯ï¼š";
+    std::cout << "\nÇëÊäÈë¹Ø¼ü´Ê£º";
     std::cin >> keyword;
 
-    std::cout << "\næœç´¢ç»“æœï¼š\n";
+    std::cout << "\nËÑË÷½á¹û£º\n";
     for (const auto &post: F->posts) {
-        // æ ¹æ®è®ºå›è®¾ç½®å†³å®šæ˜¯å¦æŸ¥æ‰¾å¸–å­å†…å®¹
+        // ¸ù¾İÂÛÌ³ÉèÖÃ¾ö¶¨ÊÇ·ñ²éÕÒÌû×ÓÄÚÈİ
         if (F->search_post_content) {
             if (post.title.find(keyword) != std::string::npos || post.content.find(keyword) != std::string::npos) {
                 char time_str[100];
-                strftime(time_str, sizeof(time_str), "%Yå¹´%mæœˆ%dæ—¥ %X", localtime(&post.tme));
-                std::cout << "å¸–å­IDï¼š" << post.id << " | æ ‡é¢˜ï¼š" << post.title << " | å‘å¸–æ—¶é—´ï¼š" << time_str
+                strftime(time_str, sizeof(time_str), "%YÄê%mÔÂ%dÈÕ %X", localtime(&post.tme));
+                std::cout << "Ìû×ÓID£º" << post.id << " | ±êÌâ£º" << post.title << " | ·¢ÌûÊ±¼ä£º" << time_str
                           << std::endl;
             }
         } else {
             if (post.title.find(keyword) != std::string::npos) {
                 char time_str[100];
-                strftime(time_str, sizeof(time_str), "%Yå¹´%mæœˆ%dæ—¥ %X", localtime(&post.tme));
-                std::cout << "å¸–å­IDï¼š" << post.id << " | æ ‡é¢˜ï¼š" << post.title << " | å‘å¸–æ—¶é—´ï¼š" << time_str
+                strftime(time_str, sizeof(time_str), "%YÄê%mÔÂ%dÈÕ %X", localtime(&post.tme));
+                std::cout << "Ìû×ÓID£º" << post.id << " | ±êÌâ£º" << post.title << " | ·¢ÌûÊ±¼ä£º" << time_str
                           << std::endl;
             }
         }
@@ -139,22 +139,22 @@ Status searchPost(Forum *F) {
 Status forumSetting(Forum *F) {
     system("cls");
 
-    std::cout << "\nè®ºå›è®¾ç½®ï¼š\n";
-    std::cout << "1. æ¯é¡µå¸–å­æ˜¾ç¤ºæ•°é‡\n";
-    std::cout << "2. æŸ¥æ‰¾æ—¶æ˜¯å¦æŸ¥æ‰¾å¸–å­å†…å®¹\n";
-    std::cout << "0. è¿”å›ä¸Šçº§èœå•\n";
+    std::cout << "\nÂÛÌ³ÉèÖÃ£º\n";
+    std::cout << "1. Ã¿Ò³Ìû×ÓÏÔÊ¾ÊıÁ¿\n";
+    std::cout << "2. ²éÕÒÊ±ÊÇ·ñ²éÕÒÌû×ÓÄÚÈİ\n";
+    std::cout << "0. ·µ»ØÉÏ¼¶²Ëµ¥\n";
 
     int setting_choice;
-    std::cout << "è¯·è¾“å…¥é€‰æ‹©çš„è®¾ç½®é¡¹ç¼–å·ï¼š";
+    std::cout << "ÇëÊäÈëÑ¡ÔñµÄÉèÖÃÏî±àºÅ£º";
     std::cin >> setting_choice;
 
     switch (setting_choice) {
         case 1:
-            std::cout << "è¯·è¾“å…¥æ¯é¡µå¸–å­æ˜¾ç¤ºæ•°é‡ï¼š";
+            std::cout << "ÇëÊäÈëÃ¿Ò³Ìû×ÓÏÔÊ¾ÊıÁ¿£º";
             std::cin >> F->post_num_per_page;
             break;
         case 2:
-            std::cout << "æ˜¯å¦æŸ¥æ‰¾å¸–å­å†…å®¹ï¼Ÿ(1:æ˜¯, 0:å¦)ï¼š";
+            std::cout << "ÊÇ·ñ²éÕÒÌû×ÓÄÚÈİ£¿(1:ÊÇ, 0:·ñ)£º";
             std::cin >> F->search_post_content;
             break;
         case 0:
@@ -163,7 +163,7 @@ Status forumSetting(Forum *F) {
             break;
     }
 
-    std::cout << "è®¾ç½®æˆåŠŸï¼\n";
+    std::cout << "ÉèÖÃ³É¹¦£¡\n";
     return OK;
 }
 
@@ -174,15 +174,15 @@ Status showSecondMenu(Forum *F) {
     int now_page = 1;
     while (true) {
         showPosts(F, now_page);
-        std::cout << "\nçœ‹å¸–èœå•ï¼š\n";
-        std::cout << "1. è¿”å›ä¸Šçº§èœå•\n";
-        std::cout << "2. ç¿»é¡µ\n";
-        std::cout << "3. æŸ¥çœ‹/è¯„è®ºå¸–å­å…·ä½“å†…å®¹\n";
-        std::cout << "4. æŒ‰å‘å¸–æ—¶é—´å‡åºæ’åˆ—\n";
-        std::cout << "5. æŒ‰å‘å¸–æ—¶é—´é™åºæ’åˆ—\n";
-        std::cout << "6. æŒ‰å¸–å­æ ‡é¢˜å­—å…¸åºå‡åºæ’åˆ—\n";
-        std::cout << "7. æŒ‰å¸–å­æ ‡é¢˜å­—å…¸åºé™åºæ’åˆ—\n";
-        std::cout << "è¯·è¾“å…¥é€‰æ‹©çš„æ“ä½œç¼–å·ï¼š";
+        std::cout << "\n¿´Ìû²Ëµ¥£º\n";
+        std::cout << "1. ·µ»ØÉÏ¼¶²Ëµ¥\n";
+        std::cout << "2. ·­Ò³\n";
+        std::cout << "3. ²é¿´/ÆÀÂÛÌû×Ó¾ßÌåÄÚÈİ\n";
+        std::cout << "4. °´·¢ÌûÊ±¼äÉıĞòÅÅÁĞ\n";
+        std::cout << "5. °´·¢ÌûÊ±¼ä½µĞòÅÅÁĞ\n";
+        std::cout << "6. °´Ìû×Ó±êÌâ×ÖµäĞòÉıĞòÅÅÁĞ\n";
+        std::cout << "7. °´Ìû×Ó±êÌâ×ÖµäĞò½µĞòÅÅÁĞ\n";
+        std::cout << "ÇëÊäÈëÑ¡ÔñµÄ²Ù×÷±àºÅ£º";
         std::cin >> second_choice;
 
         switch (second_choice) {
@@ -193,34 +193,34 @@ Status showSecondMenu(Forum *F) {
                 int total_page;
                 total_page = F->posts.size() / F->post_num_per_page + (F->posts.size() % F->post_num_per_page ? 1 : 0);
 
-                std::cout << "è¯·è¾“å…¥æ“ä½œç¼–å·\n";
-                std::cout << "1. ä¸Šä¸€é¡µ\n";
-                std::cout << "2. ä¸‹ä¸€é¡µ\n";
-                std::cout << "3. è·³è½¬è‡³æŒ‡å®šé¡µ\n";
-                std::cout << "å…¶ä»–. è¿”å›ä¸Šçº§èœå•\n";
+                std::cout << "ÇëÊäÈë²Ù×÷±àºÅ\n";
+                std::cout << "1. ÉÏÒ»Ò³\n";
+                std::cout << "2. ÏÂÒ»Ò³\n";
+                std::cout << "3. Ìø×ªÖÁÖ¸¶¨Ò³\n";
+                std::cout << "ÆäËû. ·µ»ØÉÏ¼¶²Ëµ¥\n";
                 std::cin >> choice;
                 switch (choice) {
                     case 1:
                         if (now_page - 1 <= 0) {
-                            std::cout << "å·²ç»æ˜¯é¦–é¡µå•¦ï¼" << std::endl;
+                            std::cout << "ÒÑ¾­ÊÇÊ×Ò³À²£¡" << std::endl;
                             break;
                         }
                         --now_page;
                         break;
                     case 2:
                         if (now_page + 1 > total_page) {
-                            std::cout << "å·²ç»æ˜¯å°¾é¡µå•¦ï¼" << std::endl;
+                            std::cout << "ÒÑ¾­ÊÇÎ²Ò³À²£¡" << std::endl;
                             break;
                         }
                         ++now_page;
                         break;
                     case 3:
-                        std::cout << "è¯·è¾“å…¥è·³è½¬é¡µæ•°ï¼š";
+                        std::cout << "ÇëÊäÈëÌø×ªÒ³Êı£º";
                         int to_page;
                         while (true) {
                             std::cin >> to_page;
                             if (to_page < 1 || to_page > total_page) {
-                                std::cout << "è¾“å…¥çš„é¡µç ä¸åˆç†ï¼Œè¯·é‡æ–°è¾“å…¥ï¼" << std::endl;
+                                std::cout << "ÊäÈëµÄÒ³Âë²»ºÏÀí£¬ÇëÖØĞÂÊäÈë£¡" << std::endl;
                             } else {
                                 now_page = to_page;
                                 showPosts(F, to_page);
@@ -234,44 +234,44 @@ Status showSecondMenu(Forum *F) {
                 break;
             case 3:
                 int post_id;
-                bool flag; // æ˜¯å¦æˆåŠŸæ‰¾åˆ°å¸–å­
+                bool flag; // ÊÇ·ñ³É¹¦ÕÒµ½Ìû×Ó
                 flag = false;
-                std::cout << "è¯·è¾“å…¥æ‚¨å¸Œæœ›æŸ¥çœ‹çš„å¸–å­idï¼š";
+                std::cout << "ÇëÊäÈëÄúÏ£Íû²é¿´µÄÌû×Óid£º";
                 std::cin >> post_id;
-                // æ ¹æ®idæŸ¥æ‰¾å¸–å­
+                // ¸ù¾İid²éÕÒÌû×Ó
                 for (auto &post: F->posts) {
                     if (post.id == post_id) {
                         flag = true;
                         if (showThirdMenu(&post, F) == OK)
-                            break; // å¸–å­æˆåŠŸè¾“å‡º
+                            break; // Ìû×Ó³É¹¦Êä³ö
                         break;
                     }
                 }
                 if (!flag)
-                    std::cout << "æœªæ‰¾åˆ°æŒ‡å®šå¸–å­çš„id" << std::endl;
+                    std::cout << "Î´ÕÒµ½Ö¸¶¨Ìû×ÓµÄid" << std::endl;
                 break;
             case 4:
                 std::sort(F->posts.begin(), F->posts.end(),
                           [](const Post &a, const Post &b) { return a.tme < b.tme; });
-                std::cout << "å¸–å­å·²æŒ‰å‘å¸–æ—¶é—´å‡åºæ’åˆ—ã€‚\n";
+                std::cout << "Ìû×ÓÒÑ°´·¢ÌûÊ±¼äÉıĞòÅÅÁĞ¡£\n";
                 break;
             case 5:
                 std::sort(F->posts.begin(), F->posts.end(),
                           [](const Post &a, const Post &b) { return a.tme > b.tme; });
-                std::cout << "å¸–å­å·²æŒ‰å‘å¸–æ—¶é—´é™åºæ’åˆ—ã€‚\n";
+                std::cout << "Ìû×ÓÒÑ°´·¢ÌûÊ±¼ä½µĞòÅÅÁĞ¡£\n";
                 break;
             case 6:
                 std::sort(F->posts.begin(), F->posts.end(),
                           [](const Post &a, const Post &b) { return a.title < b.title; });
-                std::cout << "å¸–å­å·²æŒ‰å¸–å­æ ‡é¢˜å­—å…¸åºå‡åºæ’åˆ—ã€‚\n";
+                std::cout << "Ìû×ÓÒÑ°´Ìû×Ó±êÌâ×ÖµäĞòÉıĞòÅÅÁĞ¡£\n";
                 break;
             case 7:
                 std::sort(F->posts.begin(), F->posts.end(),
                           [](const Post &a, const Post &b) { return a.title > b.title; });
-                std::cout << "å¸–å­å·²æŒ‰å¸–å­æ ‡é¢˜å­—å…¸åºé™åºæ’åˆ—ã€‚\n";
+                std::cout << "Ìû×ÓÒÑ°´Ìû×Ó±êÌâ×ÖµäĞò½µĞòÅÅÁĞ¡£\n";
                 break;
             default:
-                std::cout << "æ— æ•ˆçš„é€‰æ‹©ï¼Œè¯·é‡æ–°è¾“å…¥ã€‚\n";
+                std::cout << "ÎŞĞ§µÄÑ¡Ôñ£¬ÇëÖØĞÂÊäÈë¡£\n";
                 break;
         }
     }
@@ -283,14 +283,14 @@ Status showThirdMenu(Post *P, Forum *F) {
     int third_choice;
     while (true) {
         P->displayPost();
-        std::cout << "\nå¸–å­æ“ä½œèœå•ï¼š\n";
-        std::cout << "1. è¿”å›ä¸Šä¸€çº§èœå•\n";
-        std::cout << "2. è¯„è®ºå¸–å­\n";
-        std::cout << "3. æŸ¥çœ‹/å›å¤å¸–å­çš„æŸä¸€ä¸ªè¯„è®º\n";
-        std::cout << "4. æŒ‰è¯„è®ºæ—¶é—´å‡åºæ˜¾ç¤ºè¯„è®º\n";
-        std::cout << "5. æŒ‰è¯„è®ºæ—¶é—´é™åºæ˜¾ç¤ºè¯„è®º\n";
-        std::cout << "6. åˆ é™¤å¸–å­ä¸‹çš„è¯„è®º\n";
-        std::cout << "è¯·è¾“å…¥é€‰æ‹©çš„æ“ä½œç¼–å·ï¼š";
+        std::cout << "\nÌû×Ó²Ù×÷²Ëµ¥£º\n";
+        std::cout << "1. ·µ»ØÉÏÒ»¼¶²Ëµ¥\n";
+        std::cout << "2. ÆÀÂÛÌû×Ó\n";
+        std::cout << "3. ²é¿´/»Ø¸´Ìû×ÓµÄÄ³Ò»¸öÆÀÂÛ\n";
+        std::cout << "4. °´ÆÀÂÛÊ±¼äÉıĞòÏÔÊ¾ÆÀÂÛ\n";
+        std::cout << "5. °´ÆÀÂÛÊ±¼ä½µĞòÏÔÊ¾ÆÀÂÛ\n";
+        std::cout << "6. É¾³ıÌû×ÓÏÂµÄÆÀÂÛ\n";
+        std::cout << "ÇëÊäÈëÑ¡ÔñµÄ²Ù×÷±àºÅ£º";
         std::cin >> third_choice;
 
         switch (third_choice) {
@@ -298,19 +298,19 @@ Status showThirdMenu(Post *P, Forum *F) {
                 return OK;
             case 2: {
                 Comment c("", now_comment_id++);
-                std::cout << "è¯·è¾“å…¥è¯„è®ºå†…å®¹ï¼š";
+                std::cout << "ÇëÊäÈëÆÀÂÛÄÚÈİ£º";
                 std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
                 std::getline(std::cin, c.content);
                 P->commentPost(c);
-                std::cout << "è¯„è®ºæˆåŠŸï¼\n";
+                std::cout << "ÆÀÂÛ³É¹¦£¡\n";
                 break;
             }
             case 3:
                 if (P->comments.empty()) {
-                    std::cout << "è¯¥å¸–å­æ— è¯„è®º\n";
+                    std::cout << "¸ÃÌû×ÓÎŞÆÀÂÛ\n";
                 } else {
                     int comment_id;
-                    std::cout << "è¯·è¾“å…¥æ‚¨å¸Œæœ›å›å¤çš„è¯„è®ºidï¼š";
+                    std::cout << "ÇëÊäÈëÄúÏ£Íû»Ø¸´µÄÆÀÂÛid£º";
                     std::cin >> comment_id;
 
                     bool found = false;
@@ -324,38 +324,38 @@ Status showThirdMenu(Post *P, Forum *F) {
                     }
 
                     if (!found)
-                        std::cout << "æœªæ‰¾åˆ°æŒ‡å®šè¯„è®ºçš„id" << std::endl;
+                        std::cout << "Î´ÕÒµ½Ö¸¶¨ÆÀÂÛµÄid" << std::endl;
                 }
                 break;
             case 4:
-                // æŒ‰è¯„è®ºæ—¶é—´å‡åºæ˜¾ç¤ºè¯„è®ºåŠŸèƒ½çš„å®ç°
+                // °´ÆÀÂÛÊ±¼äÉıĞòÏÔÊ¾ÆÀÂÛ¹¦ÄÜµÄÊµÏÖ
                 std::sort(P->comments.begin(), P->comments.end(),
                           [](const Comment &a, const Comment &b) { return a.tme < b.tme; });
-                std::cout << "è¯„è®ºå·²æŒ‰æ—¶é—´å‡åºæ’åˆ—ã€‚\n";
+                std::cout << "ÆÀÂÛÒÑ°´Ê±¼äÉıĞòÅÅÁĞ¡£\n";
                 break;
             case 5:
-                // æŒ‰è¯„è®ºæ—¶é—´é™åºæ˜¾ç¤ºè¯„è®ºåŠŸèƒ½çš„å®ç°
+                // °´ÆÀÂÛÊ±¼ä½µĞòÏÔÊ¾ÆÀÂÛ¹¦ÄÜµÄÊµÏÖ
                 std::sort(P->comments.begin(), P->comments.end(),
                           [](const Comment &a, const Comment &b) { return a.tme > b.tme; });
-                std::cout << "è¯„è®ºå·²æŒ‰æ—¶é—´é™åºæ’åˆ—ã€‚\n";
+                std::cout << "ÆÀÂÛÒÑ°´Ê±¼ä½µĞòÅÅÁĞ¡£\n";
                 break;
             case 6:
                 if (P->comments.empty()) {
-                    std::cout << "è¯¥å¸–å­æ— è¯„è®º\n";
+                    std::cout << "¸ÃÌû×ÓÎŞÆÀÂÛ\n";
                 } else {
                     int comment_id;
-                    std::cout << "è¯·è¾“å…¥æ‚¨å¸Œæœ›åˆ é™¤çš„è¯„è®ºidï¼š";
+                    std::cout << "ÇëÊäÈëÄúÏ£ÍûÉ¾³ıµÄÆÀÂÛid£º";
                     std::cin >> comment_id;
 
                     if (P->deleteComment(comment_id) == OK) {
-                        std::cout << "è¯„è®ºåˆ é™¤æˆåŠŸï¼\n";
+                        std::cout << "ÆÀÂÛÉ¾³ı³É¹¦£¡\n";
                     } else {
-                        std::cout << "æœªæ‰¾åˆ°æŒ‡å®šè¯„è®ºçš„idï¼Œåˆ é™¤å¤±è´¥ã€‚\n";
+                        std::cout << "Î´ÕÒµ½Ö¸¶¨ÆÀÂÛµÄid£¬É¾³ıÊ§°Ü¡£\n";
                     }
                 }
                 break;
             default:
-                std::cout << "æ— æ•ˆçš„é€‰æ‹©ï¼Œè¯·é‡æ–°è¾“å…¥ã€‚\n";
+                std::cout << "ÎŞĞ§µÄÑ¡Ôñ£¬ÇëÖØĞÂÊäÈë¡£\n";
                 break;
         }
     }
@@ -366,33 +366,33 @@ Status showFourthMenu(Comment *C, Forum *F) {
     while (true) {
         system("cls");
         C->showDetailedComment();
-        std::cout << "\nè¯„è®ºæ“ä½œèœå•ï¼š\n";
-        std::cout << "1. è¿”å›ä¸Šä¸€çº§èœå•\n";
-        std::cout << "2. å›å¤å½“å‰è¯„è®º\n";
-        std::cout << "3. æ ¹æ®è¯„è®ºä¸‹çš„å›å¤IDè¯„è®ºå›å¤\n";
-        std::cout << "4. åˆ é™¤è¯„è®ºä¸‹çš„å›å¤\n";
-        std::cout << "è¯·è¾“å…¥é€‰æ‹©çš„æ“ä½œç¼–å·ï¼š";
+        std::cout << "\nÆÀÂÛ²Ù×÷²Ëµ¥£º\n";
+        std::cout << "1. ·µ»ØÉÏÒ»¼¶²Ëµ¥\n";
+        std::cout << "2. »Ø¸´µ±Ç°ÆÀÂÛ\n";
+        std::cout << "3. ¸ù¾İÆÀÂÛÏÂµÄ»Ø¸´IDÆÀÂÛ»Ø¸´\n";
+        std::cout << "4. É¾³ıÆÀÂÛÏÂµÄ»Ø¸´\n";
+        std::cout << "ÇëÊäÈëÑ¡ÔñµÄ²Ù×÷±àºÅ£º";
         std::cin >> fourth_choice;
 
         switch (fourth_choice) {
             case 1:
                 return OK;
             case 2:{
-                // è¯„è®ºå½“å‰è¯„è®ºåŠŸèƒ½çš„å®ç°
+                // ÆÀÂÛµ±Ç°ÆÀÂÛ¹¦ÄÜµÄÊµÏÖ
                 Comment reply("", now_comment_id++);
-                std::cout << "è¯·è¾“å…¥å›å¤å†…å®¹ï¼š";
+                std::cout << "ÇëÊäÈë»Ø¸´ÄÚÈİ£º";
                 std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
                 std::getline(std::cin, reply.content);
                 C->replyComment(reply);
-                std::cout << "å›å¤æˆåŠŸï¼\n";
+                std::cout << "»Ø¸´³É¹¦£¡\n";
                 break;}
             case 3:
-                // æ ¹æ®å›å¤idè¯„è®ºå›å¤åŠŸèƒ½çš„å®ç°
+                // ¸ù¾İ»Ø¸´idÆÀÂÛ»Ø¸´¹¦ÄÜµÄÊµÏÖ
                 if (C->replies.empty()) {
-                    std::cout << "è¯¥è¯„è®ºæ— å›å¤\n";
+                    std::cout << "¸ÃÆÀÂÛÎŞ»Ø¸´\n";
                 } else {
                     int reply_id;
-                    std::cout << "è¯·è¾“å…¥æ‚¨å¸Œæœ›æŸ¥çœ‹çš„å›å¤idï¼š";
+                    std::cout << "ÇëÊäÈëÄúÏ£Íû²é¿´µÄ»Ø¸´id£º";
                     std::cin >> reply_id;
 
                     bool found = false;
@@ -405,29 +405,29 @@ Status showFourthMenu(Comment *C, Forum *F) {
                     }
 
                     if (!found)
-                        std::cout << "æœªæ‰¾åˆ°æŒ‡å®šå›å¤çš„id" << std::endl;
+                        std::cout << "Î´ÕÒµ½Ö¸¶¨»Ø¸´µÄid" << std::endl;
                 }
                 break;
             case 4:
                 if (C->replies.empty()) {
-                    std::cout << "è¯¥è¯„è®ºæ— å›å¤\n";
+                    std::cout << "¸ÃÆÀÂÛÎŞ»Ø¸´\n";
                 } else {
                     int reply_id;
-                    std::cout << "è¯·è¾“å…¥æ‚¨å¸Œæœ›åˆ é™¤çš„å›å¤idï¼š";
+                    std::cout << "ÇëÊäÈëÄúÏ£ÍûÉ¾³ıµÄ»Ø¸´id£º";
                     std::cin >> reply_id;
 
                     if (C->deleteReply(reply_id) == OK) {
-                        std::cout << "å›å¤åˆ é™¤æˆåŠŸï¼\n";
+                        std::cout << "»Ø¸´É¾³ı³É¹¦£¡\n";
                     } else {
-                        std::cout << "æœªæ‰¾åˆ°æŒ‡å®šå›å¤çš„idï¼Œåˆ é™¤å¤±è´¥ã€‚\n";
+                        std::cout << "Î´ÕÒµ½Ö¸¶¨»Ø¸´µÄid£¬É¾³ıÊ§°Ü¡£\n";
                     }
                 }
                 break;
             default:
-                std::cout << "æ— æ•ˆçš„é€‰æ‹©ï¼Œè¯·é‡æ–°è¾“å…¥ã€‚\n";
+                std::cout << "ÎŞĞ§µÄÑ¡Ôñ£¬ÇëÖØĞÂÊäÈë¡£\n";
                 break;
         }
     }
 }
 
-#endif //ç»¼åˆè®¾è®¡_FUNCTIONS_H
+#endif //×ÛºÏÉè¼Æ_FUNCTIONS_H
