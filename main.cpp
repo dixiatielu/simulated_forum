@@ -87,7 +87,10 @@ int main() {
                 if (!forum_inited) {
                     cout << "\n论坛尚未初始化TAT，请先初始化\n";
                 } else {
-                    if(forumSetting(F) == OK)break;
+                    if(forumSetting(F) == OK){cout << "设置已完成！" << endl;}
+                    else {
+                        cout << "设置失败！" << endl;
+                    }
                 }
                 break;
             default:

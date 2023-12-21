@@ -139,34 +139,42 @@ Status searchPost(Forum *F) {
 }
 
 Status forumSetting(Forum *F) {
-    system("cls");
+    while(true) {
+        system("cls");
 
-    std::cout << "\n论坛设置：\n";
-    std::cout << "1. 每页帖子显示数量\n";
-    std::cout << "2. 查找时是否查找帖子内容\n";
-    std::cout << "0. 返回上级菜单\n";
+        std::cout << "\n论坛设置：\n";
+        std::cout << "1. 每页帖子显示数量\n";
+        std::cout << "2. 查找时是否查找帖子内容\n";
+        std::cout << "0. 返回上级菜单\n";
 
-    int setting_choice;
-    std::cout << "请输入选择的设置项编号：";
-    std::cin >> setting_choice;
+        int setting_choice;
+        std::cout << "请输入选择的设置项编号：";
+        std::cin >> setting_choice;
 
-    switch (setting_choice) {
-        case 1:
-            std::cout << "请输入每页帖子显示数量：";
-            std::cin >> F->post_num_per_page;
-            break;
-        case 2:
-            std::cout << "是否查找帖子内容？(1:是, 0:否)：";
-            std::cin >> F->search_post_content;
-            break;
-        case 0:
-            return OK;
-        default:
-            break;
+        switch (setting_choice) {
+            case 1:
+                std::cout << "请输入每页帖子显示数量：";
+                int post_num_per_page;
+                std::cin >> post_num_per_page;
+                if (!std::cin)return ERROR;
+                F->post_num_per_page = post_num_per_page;
+                std::cout << "设置已记录！" << std::endl;
+                break;
+            case 2:
+                std::cout << "是否查找帖子内容？(1:是, 0:否)：";
+                bool search_post_content;
+                std::cin >> search_post_content;
+                if (!std::cin)return ERROR;
+                F->search_post_content = search_post_content;
+                std::cout << "设置已记录！" << std::endl;
+                break;
+            case 0:
+                return OK;
+            default:
+                break;
+        }
+        system("pause");
     }
-
-    std::cout << "设置成功！\n";
-    return OK;
 }
 
 Status showSecondMenu(Forum *F) {
@@ -305,8 +313,8 @@ Status showThirdMenu(Post *P, Forum *F) {
         std::cout << "3. 查看/回复帖子的某一个评论\n";
         std::cout << "4. 按评论时间升序显示评论\n";
         std::cout << "5. 按评论时间降序显示评论\n";
-        std::cout << "6. 按评论时间降序显示评论\n";
-        std::cout << "7. 按评论时间降序显示评论\n";
+        std::cout << "6. 按点赞数升序显示评论\n";
+        std::cout << "7. 按点赞数降序显示评论\n";
         std::cout << "8. 删除帖子下的评论\n";
         std::cout << "9. 点赞该帖子\n";
         std::cout << "10. 取消点赞该帖子\n";
@@ -435,6 +443,7 @@ Status showThirdMenu(Post *P, Forum *F) {
                     }
                     if(chose_successfully)break;
                 }
+                break;
 
             default:
                 std::cout << "无效的选择，请重新输入。\n";
@@ -520,9 +529,10 @@ Status showFourthMenu(Comment *C, Forum *F) {
                 if(C->deLikeComment()){
                     std::cout << "取消点赞成功！" << std::endl;
                 }
-                else{
+                else {
                     std::cout << "取消点赞失败，可能是因为还没有点赞呢~" << std::endl;
                 }
+                break;
             default:
                 std::cout << "无效的选择，请重新输入。\n";
                 break;
