@@ -62,7 +62,9 @@ Status initForum(Forum *F) {
     std::cin >> forum_name;
     std::cout << "请输入每页显示的帖子数：";
     std::cin >> post_num_per_page;
-
+    if (!std::cin) {
+        return ERROR;
+    }
     F->name = forum_name;
     F->post_num_per_page = post_num_per_page;
     return OK;

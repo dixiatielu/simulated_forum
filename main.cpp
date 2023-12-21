@@ -41,7 +41,7 @@ int main() {
                     cout << "\n初始化成功！\n";
                     forum_inited = 1;
                 } else {
-                    cout << "\n初始化失败\n";
+                    cout << "\n初始化失败！\n";
                 }
                 system("pause");
                 break;
