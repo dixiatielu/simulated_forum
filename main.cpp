@@ -8,7 +8,7 @@
 using namespace std;
 
 int main() {
-    Forum* F = new Forum("模拟论坛", 5, 5, false); // 创建论坛指针
+    Forum* F = new Forum("模拟论坛", 5, false); // 创建论坛指针
     int forum_inited = 0;  // 初始化标志
     int choice = -1;  // 用户选择操作的变量
     now_post_id = 1;

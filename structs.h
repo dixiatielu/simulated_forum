@@ -13,6 +13,7 @@ struct Comment
         content = comment_content;
         tme = time(nullptr);
         id = now_id;
+        likes = 0;
     }
 
     //一个评论由内容、回复和时间组成
@@ -20,6 +21,7 @@ struct Comment
     std::vector<Comment> replies;    //评论的评论 使用变长数组vector可以免于分配过多的内存空间，在需要时再使用。
     time_t tme; // 评论时间
     int id; // 评论唯一id
+    int likes; // 点赞数
 
     // 回复评论
     Status replyComment(const Comment& c){
@@ -46,16 +48,27 @@ struct Comment
     // 显示评论详情
     Status showDetailedComment(int depth = 0) {
         // 显示评论的缩进，根据深度层次确定缩进量
-        std::cout << std::setw(4 * depth) << "";
+        std::cout << std::setw(4 * depth) << ""; // 按照评论深度缩进
         char time_str[100];
-        strftime(time_str, 100, "%Y年%m月%d日 %X", localtime(&tme));
-        std::cout << (depth == 0 ? "当前评论" : "回复") << "ID：" << id << " | 内容：" << content << " | 评论时间：" << time_str << std::endl;
+        strftime(time_str, 100, "%Y年%m月%d日 %X", localtime(&tme)); // 转换时间
+        std::cout << (depth == 0 ? "当前评论" : "回复") << "ID：" << id << " | 内容：" << content << " | 评论时间：" << time_str << " | 点赞数：" << likes << std::endl;
 
         // 递归显示回复
         for (auto &reply : replies) {
             reply.showDetailedComment(depth + 1);
         }
 
+        return OK;
+    }
+    Status likeComment() {
+        ++likes;
+        return OK;
+    }
+    Status deLikeComment() {
+        if(likes <= 0){
+            return ERROR;
+        }
+        --likes;
         return OK;
     }
 };
@@ -68,6 +81,7 @@ struct Post
     std::string content;
     time_t tme;
     std::vector<Comment> comments;// 多个评论
+    int likes; // 点赞数
     // 构造函数，利用此函数生成一篇Post
     // 用法示例：Post myPost("Title of Post", "Content of Post", now_post_id);
     Post(const std::string& postTitle, const std::string& postContent, int now_id)
@@ -77,6 +91,7 @@ struct Post
         content = postContent;
         tme = time(nullptr); // 使用当前时间初始化time成员
         id = now_id;
+        likes = 0;
     }
 
     // 显示帖子信息
@@ -86,6 +101,7 @@ struct Post
         std::cout << "帖子id：" << id << std::endl;
         std::cout << "帖子标题: " << title << std::endl;
         std::cout << "帖子内容: " << content << std::endl;
+        std::cout << "帖子点赞数：" << likes << std::endl;
         std::cout << "帖子发布时间: " << time_str << std::endl;
 
         if (!comments.empty()) {
@@ -119,6 +135,17 @@ struct Post
 
         return ERROR; // 未找到指定id的评论及其回复
     }
+    Status likeComment() {
+        ++likes;
+        return OK;
+    }
+    Status deLikeComment() {
+        if(likes <= 0){
+            return ERROR;
+        }
+        --likes;
+        return OK;
+    }
 };
 
 // 论坛
@@ -131,7 +158,7 @@ struct Forum
 
     std::vector<Post> posts;
     std::string name;
-    Forum(const std::string& forum_name, const int Post_num_per_page, const int Comment_num_per_page, bool Search_post_content)
+    Forum(const std::string& forum_name, const int Post_num_per_page, bool Search_post_content)
     {
         post_num_per_page = Post_num_per_page;
         search_post_content = Search_post_content;

@@ -182,6 +182,8 @@ Status showSecondMenu(Forum *F) {
         std::cout << "5. 按发帖时间降序排列\n";
         std::cout << "6. 按帖子标题字典序升序排列\n";
         std::cout << "7. 按帖子标题字典序降序排列\n";
+        std::cout << "8. 按帖子标题字典序降序排列\n";
+        std::cout << "9. 按帖子标题字典序降序排列\n";
         std::cout << "请输入选择的操作编号：";
         std::cin >> second_choice;
 
@@ -270,6 +272,16 @@ Status showSecondMenu(Forum *F) {
                           [](const Post &a, const Post &b) { return a.title > b.title; });
                 std::cout << "帖子已按帖子标题字典序降序排列。\n";
                 break;
+            case 8:
+                std::sort(F->posts.begin(), F->posts.end(),
+                          [](const Post &a, const Post &b) { return a.likes < b.likes; });
+                std::cout << "帖子已按帖子标题字典序降序排列。\n";
+                break;
+            case 9:
+                std::sort(F->posts.begin(), F->posts.end(),
+                          [](const Post &a, const Post &b) { return a.likes > b.likes; });
+                std::cout << "帖子已按帖子标题字典序降序排列。\n";
+                break;
             default:
                 std::cout << "无效的选择，请重新输入。\n";
                 break;
@@ -289,7 +301,13 @@ Status showThirdMenu(Post *P, Forum *F) {
         std::cout << "3. 查看/回复帖子的某一个评论\n";
         std::cout << "4. 按评论时间升序显示评论\n";
         std::cout << "5. 按评论时间降序显示评论\n";
-        std::cout << "6. 删除帖子下的评论\n";
+        std::cout << "6. 按评论时间降序显示评论\n";
+        std::cout << "7. 按评论时间降序显示评论\n";
+        std::cout << "8. 删除帖子下的评论\n";
+        std::cout << "9. 点赞该帖子\n";
+        std::cout << "10. 取消点赞该帖子\n";
+        std::cout << "11. 编辑帖子\n";
+
         std::cout << "请输入选择的操作编号：";
         std::cin >> third_choice;
 
@@ -340,6 +358,18 @@ Status showThirdMenu(Post *P, Forum *F) {
                 std::cout << "评论已按时间降序排列。\n";
                 break;
             case 6:
+                // 按评论时间降序显示评论功能的实现
+                std::sort(P->comments.begin(), P->comments.end(),
+                          [](const Comment &a, const Comment &b) { return a.likes < b.likes; });
+                std::cout << "评论已按点赞数升序排列。\n";
+                break;
+            case 7:
+                // 按评论时间降序显示评论功能的实现
+                std::sort(P->comments.begin(), P->comments.end(),
+                          [](const Comment &a, const Comment &b) { return a.likes > b.likes; });
+                std::cout << "评论已按点赞数降序排列。\n";
+                break;
+            case 8:
                 if (P->comments.empty()) {
                     std::cout << "该帖子无评论\n";
                 } else {
@@ -354,6 +384,54 @@ Status showThirdMenu(Post *P, Forum *F) {
                     }
                 }
                 break;
+            case 9:
+                if(P->likeComment()){
+                    std::cout << "点赞成功！" << std::endl;
+                }
+                else{
+                    std::cout << "点赞失败……" << std::endl;
+                }
+                break;
+            case 10:
+                if(P->deLikeComment()){
+                    std::cout << "取消点赞成功！" << std::endl;
+                }
+                else{
+                    std::cout << "取消点赞失败，可能是因为还没有点赞呢~" << std::endl;
+                }
+                break;
+            case 11:
+                // 编辑帖子
+                std::cout << "您想编辑帖子的？" << std::endl;
+                std::cout << "1. 标题" << std::endl;
+                std::cout << "2. 内容" << std::endl;
+                int choice;
+                while(true)
+                {
+                    std::cin >> choice;
+                    bool chose_successfully = false;
+                    switch (choice) {
+                        case 1:
+                            std::cout << "帖子原标题为：" << P->title << std::endl;
+                            std::cout << "请输入帖子的新标题：" << std::endl;
+                            std::cin >> P->title;
+                            std::cout << "修改成功！" << std::endl;
+                            chose_successfully = true;
+                            break;
+                        case 2:
+                            std::cout << "帖子原内容为：" << P->content << std::endl;
+                            std::cout << "请输入帖子的新内容：" << std::endl;
+                            std::cin >> P->content;
+                            std::cout << "修改成功！" << std::endl;
+                            chose_successfully = true;
+                            break;
+                        default:
+                            std::cout << "无效的选项，请重新输入！" << std::endl;
+                            break;
+                    }
+                    if(chose_successfully)break;
+                }
+
             default:
                 std::cout << "无效的选择，请重新输入。\n";
                 break;
@@ -369,8 +447,10 @@ Status showFourthMenu(Comment *C, Forum *F) {
         std::cout << "\n评论操作菜单：\n";
         std::cout << "1. 返回上一级菜单\n";
         std::cout << "2. 回复当前评论\n";
-        std::cout << "3. 根据评论下的回复ID评论回复\n";
+        std::cout << "3. 回复当前评论下的其他评论\n";
         std::cout << "4. 删除评论下的回复\n";
+        std::cout << "5. 点赞该评论\n";
+        std::cout << "6. 取消点赞该评论\n";
         std::cout << "请输入选择的操作编号：";
         std::cin >> fourth_choice;
 
@@ -423,6 +503,21 @@ Status showFourthMenu(Comment *C, Forum *F) {
                     }
                 }
                 break;
+            case 5:
+                if(C->likeComment()){
+                    std::cout << "点赞成功！" << std::endl;
+                }
+                else{
+                    std::cout << "点赞失败……" << std::endl;
+                }
+                break;
+            case 6:
+                if(C->deLikeComment()){
+                    std::cout << "取消点赞成功！" << std::endl;
+                }
+                else{
+                    std::cout << "取消点赞失败，可能是因为还没有点赞呢~" << std::endl;
+                }
             default:
                 std::cout << "无效的选择，请重新输入。\n";
                 break;
