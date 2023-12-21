@@ -142,7 +142,7 @@ Status forumSetting(Forum *F) {
     while(true) {
         system("cls");
 
-        std::cout << "\n论坛设置：\n";
+        std::cout << "论坛设置：\n";
         std::cout << "1. 每页帖子显示数量\n";
         std::cout << "2. 查找时是否查找帖子内容\n";
         std::cout << "3. 论坛名更改\n";
