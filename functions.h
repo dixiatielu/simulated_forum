@@ -91,7 +91,7 @@ Status showPosts(Forum *F, int now_page) {
         Post post = F->posts[i];
         char time_str[100];
         strftime(time_str, sizeof(time_str), "%Y年%m月%d日 %X", localtime(&post.tme));
-        std::cout << "帖子ID：" << post.id << " | 标题：" << post.title << " | 发帖时间：" << time_str << std::endl;
+        std::cout << "帖子ID：" << post.id << " | 标题：" << post.title << " | 点赞数：" << post.likes << " | 发帖时间：" << time_str << std::endl;
     }
     std::cout << "第" << now_page << "页 / " << "共" << total_page << "页" << std::endl;
     return OK;
@@ -285,12 +285,12 @@ Status showSecondMenu(Forum *F) {
             case 8:
                 std::sort(F->posts.begin(), F->posts.end(),
                           [](const Post &a, const Post &b) { return a.likes < b.likes; });
-                std::cout << "帖子已按帖子标题字典序降序排列。\n";
+                std::cout << "帖子已按点赞数升序排列。\n";
                 break;
             case 9:
                 std::sort(F->posts.begin(), F->posts.end(),
                           [](const Post &a, const Post &b) { return a.likes > b.likes; });
-                std::cout << "帖子已按帖子标题字典序降序排列。\n";
+                std::cout << "帖子已按点赞数降序排列。\n";
                 break;
             default:
                 std::cout << "无效的选择，请重新输入。\n";
