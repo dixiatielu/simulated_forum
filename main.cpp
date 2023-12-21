@@ -43,7 +43,6 @@ int main() {
                 } else {
                     cout << "\n初始化失败！\n";
                 }
-                system("pause");
                 break;
 
             case 2:
@@ -57,7 +56,6 @@ int main() {
                     else
                         cout << "发帖失败！" << endl;
                 }
-                system("pause");
                 break;
 
             case 3:
@@ -67,7 +65,6 @@ int main() {
                 } else {
                     if(showSecondMenu(F) == OK)break;
                 }
-                system("pause");
                 break;
             case 4:
                 // 查找帖子
@@ -76,7 +73,6 @@ int main() {
                 } else {
                     if(searchPost(F) == OK)break;
                 }
-                system("pause");
                 break;
             case 5:
                 // 通过帖子id删除帖子
@@ -85,7 +81,6 @@ int main() {
                 } else {
                     if(deletePost(F) == OK)break;
                 }
-                system("pause");
                 break;
             case 6:
                 // 论坛设置
@@ -94,12 +89,12 @@ int main() {
                 } else {
                     if(forumSetting(F) == OK)break;
                 }
-                system("pause");
                 break;
             default:
                 cout << "输入的选择无效，请重新输入！" << endl;
                 break;
         }
+        system("pause");
     }
 
     return 0;
