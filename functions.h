@@ -182,8 +182,8 @@ Status showSecondMenu(Forum *F) {
         std::cout << "5. 按发帖时间降序排列\n";
         std::cout << "6. 按帖子标题字典序升序排列\n";
         std::cout << "7. 按帖子标题字典序降序排列\n";
-        std::cout << "8. 按帖子标题字典序降序排列\n";
-        std::cout << "9. 按帖子标题字典序降序排列\n";
+        std::cout << "8. 按帖子点赞数升序排列\n";
+        std::cout << "9. 按帖子点赞数降序排列\n";
         std::cout << "请输入选择的操作编号：";
         std::cin >> second_choice;
 
@@ -286,6 +286,8 @@ Status showSecondMenu(Forum *F) {
                 std::cout << "无效的选择，请重新输入。\n";
                 break;
         }
+        system("pause");
+
     }
 }
 
@@ -436,6 +438,7 @@ Status showThirdMenu(Post *P, Forum *F) {
                 std::cout << "无效的选择，请重新输入。\n";
                 break;
         }
+        system("pause");
     }
 }
 
@@ -522,6 +525,7 @@ Status showFourthMenu(Comment *C, Forum *F) {
                 std::cout << "无效的选择，请重新输入。\n";
                 break;
         }
+        system("pause");
     }
 }
 
