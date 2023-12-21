@@ -112,10 +112,10 @@ Status deletePost(Forum *F) {
 
 Status searchPost(Forum *F) {
     std::string keyword;
-    std::cout << "\n请输入关键词：";
+    std::cout << "请输入关键词：";
     std::cin >> keyword;
 
-    std::cout << "\n搜索结果：\n";
+    std::cout << "搜索结果：";
     for (const auto &post: F->posts) {
         // 根据论坛设置决定是否查找帖子内容
         if (F->search_post_content) {
@@ -145,6 +145,7 @@ Status forumSetting(Forum *F) {
         std::cout << "\n论坛设置：\n";
         std::cout << "1. 每页帖子显示数量\n";
         std::cout << "2. 查找时是否查找帖子内容\n";
+        std::cout << "3. 论坛名更改\n";
         std::cout << "0. 返回上级菜单\n";
 
         int setting_choice;
@@ -167,6 +168,11 @@ Status forumSetting(Forum *F) {
                 if (!std::cin)return ERROR;
                 F->search_post_content = search_post_content;
                 std::cout << "设置已记录！" << std::endl;
+                break;
+            case 3:
+                std::cout << "论坛原名：" << F->name << std::endl;
+                std::cout << "请输入新名称：";
+                std::cin >> F->name;
                 break;
             case 0:
                 return OK;
